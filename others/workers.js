@@ -26,13 +26,13 @@ async function handleRequest(request) {
     const url = new URL(request.url);
     const friendName = sanitizeInput(url.searchParams.get('name')) || '友链卡片生成器';
     const specialty = sanitizeInput(url.searchParams.get('specialty')) || '生成一个类似我这样的卡片';
-    const displayLink = sanitizeInput(url.searchParams.get('link')) || 'https://friendcard.is-an.org';
+    const displayLink = sanitizeInput(url.searchParams.get('link')) || 'https://card.azad.asia';
     const redirectLink = sanitizeInput(url.searchParams.get('redirect')) || 
       (displayLink.startsWith('http') ? displayLink : `https://${displayLink}`);
     const avatarLink = sanitizeInput(url.searchParams.get('avatar'));
-    const domain = displayLink !== 'https://friendcard.is-an.org' ? 
+    const domain = displayLink !== 'https://card.azad.asia' ? 
       (new URL(displayLink.startsWith('http') ? displayLink : `https://${displayLink}`)).hostname : 
-      'friendcard.is-an.org';
+      'card.azad.asia';
 
     const styles = {
       bgcolor: sanitizeInput(url.searchParams.get('bgcolor')) || 'linear-gradient(135deg, #e0e7ff, #f0f4f8)',
@@ -111,10 +111,10 @@ function generateHTML(name, specialty, displayLink, redirectLink, avatarLink, do
   let avatarURL;
   if (avatarLink) {
     avatarURL = avatarLink;
-  } else if (displayLink && displayLink !== 'https://friendcard.is-an.org') {
+  } else if (displayLink && displayLink !== 'https://card.azad.asia') {
     avatarURL = `https://api.faviconkit.com/${domain}/128`;
   } else {
-    avatarURL = 'https://friendcard.is-an.org/favicon.svg';
+    avatarURL = 'https://card.azad.asia/favicon.svg';
   }
 
   return `
@@ -244,7 +244,7 @@ function generateHTML(name, specialty, displayLink, redirectLink, avatarLink, do
     </style>
     <div class="card">
       <div class="avatar">
-        <img src="${avatarURL}" alt="${name}'s avatar" onerror="this.onerror=null;this.src='https://friendcard.is-an.org/favicon.svg';">
+        <img src="${avatarURL}" alt="${name}'s avatar" onerror="this.onerror=null;this.src='https://card.azad.asia/favicon.svg';">
       </div>
       <div class="content">
         <h3>${name}</h3>
