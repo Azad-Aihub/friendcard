@@ -56,7 +56,7 @@ const props = defineProps({
   }
 })
 
-const baseUrl = 'https://card.azad.asia'
+const baseUrl = 'https://01.azad.asia'
 
 const generatedUrl = computed(() => {
   const params = new URLSearchParams()
